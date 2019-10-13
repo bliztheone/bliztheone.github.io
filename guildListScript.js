@@ -13,15 +13,21 @@ for (let i = 0; i < hiden.length; i++) {
 
 // Задание 6
 function isEven() {
-  if (Math.random() > 0.9) return true;
-  else return false;
+  return Math.random() > 0.9;
 };
 
-function callBack(func, time) {
+function checkFunc() {
+  console.log("Успешно");
+};
+
+let time = [1000, 5000];
+
+function test(func, checkFunc, time) {
+  time = time || [500, 3000];
   return new Promise ((resolve,reject) => {
     let currentTimeOffset = 0
     let timerId = setTimeout(function check() {
-      if(func(1)) {
+      if(func()) {
         resolve();
         clearTimeout(timerId);
       }
@@ -38,18 +44,10 @@ function callBack(func, time) {
           timerId = setInterval(check, time[0]);
         }
       };
-    }, time[0]);
-  });
+    }, time[0]);    
+  })
+    .then( () => checkFunc() )
+    .catch( () => console.log("время ожидания превышено") )      
 };
 
-let time = [1000, 5000];
-
-function test(func, callBack, time) {
-  time = time || [500, 3000];
-  return callBack(func, time)
-    .then( () => console.log("успешно"))
-    .catch( () => console.log("время ожидания превышено"))
-};
-
-test(isEven, callBack, time);
-
+test(isEven, checkFunc, time);
