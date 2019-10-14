@@ -12,7 +12,7 @@ for (let i = 0; i < hiden.length; i++) {
 };
 
 // Задание 6
-function isEven() {
+function isTrue() {
   return Math.random() > 0.9;
 };
 
@@ -22,7 +22,7 @@ function checkFunc() {
 
 let time = [1000, 5000];
 
-function test(func, checkFunc, time) {
+function timerFunc(func, checkFunc, time) {
   time = time || [500, 3000];
   return new Promise ((resolve,reject) => {
     let currentTimeOffset = 0
@@ -50,4 +50,4 @@ function test(func, checkFunc, time) {
     .catch( () => console.log("время ожидания превышено") )      
 };
 
-test(isEven, checkFunc, time);
+timerFunc(isTrue, checkFunc, time);
