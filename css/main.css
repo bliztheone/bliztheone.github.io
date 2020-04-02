@@ -473,8 +473,7 @@ select[multiple] {
     float: right; }
     .footer_subscribe-red:hover {
       cursor: pointer;
-      background: rgb(204, 72, 57);
-    }
+      background: #AD291A; }
     @media (min-width: 680px) and (max-width: 900px) {
       .footer_subscribe-red {
         padding: 10px 10px 10px 5px;
@@ -738,7 +737,8 @@ select[multiple] {
 
 .dropdown-content a:hover {
   position: relative;
-  background: #FFDBDB; }
+  background: #FFDBDB;
+  color: #E85A4A; }
 
 .first-link:hover:before {
   content: "";
