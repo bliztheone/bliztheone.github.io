@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+            <!-- Site Title-->
+            <title>По подарку</title>
+            <meta name="format-detection" content="telephone=no">
+            <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta charset="utf-8">
+            <link href="css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="header">
+        	<div class="Container">
+        		<div class="header_content">
+        			<img class="header_logo" src="./img/logo.svg">
+        			<div class="header_box">
+        				<div class="header_nav mobile-hidden">
+        					<div class="header_nav-item dropdown">
+        						<button class="dropbtn">Подарки для мальчиков</button>
+        						<div class="dropdown-content">
+        							<div class="spacer"><div class="fake-triangle"></div></div>
+        							<div class="links">
+        								<a class="first-link" href="#">На 14 февраля</a>
+        								<a href="#">На 8 марта</a>
+        								<a href="#">На Новый год</a>
+        								<a href="#">На день рождения</a>
+        							</div>
+        						</div>
+        					</div>
+        					<div class="header_nav-item dropdown">
+        						<button class="dropbtn">Подарки для девочек</button>
+        						<div class="dropdown-content">
+        							<div class="spacer"><div class="fake-triangle"></div></div>
+        							<div class="links">
+        								<a class="first-link" href="#">На 14 февраля</a>
+        								<a href="#">На 8 марта</a>
+        								<a href="#">На Новый год</a>
+        								<a href="#">На день рождения</a>
+        							</div>
+        						</div>
+        					</div>
+        					<div class="header_nav-item"><button class="dropbtn">О нас</button></div>
+        				</div>
+        				<span class="header_search mobile-hidden"><input placeholder="Поиск" type="text" /></span>
+        				<div class="header_search-mobile desktop-hidden search-mobile__js" onclick="openSearch()"></div>
+        				<div class="header_burger desktop-hidden burger__js" onclick="openNav()"></div>
+        			</div>
+        		</div>
+        	</div>
+        	
+        	<!-- overlay with links -->
+        	<div id="links-navbar" class="overlay">
+        		<div class="overlay-content overlay-content__links">
+        			<a href="#">Подарки для мальчиков</a>
+        			<a href="#">Подарки для девочек</a>
+        			<a href="#">О нас</a>
+        		</div>
+        	</div>
+        	
+        	<!-- overlay with search -->
+        	<div id="search-navbar" class="overlay overlay__search">
+        		<div class="overlay-content">
+        			<span class="header_search"><input placeholder="Поиск" type="text" /></span>
+        			<div class="header_overlay-close" onclick="closeSearch()"></div>
+        		</div>
+        	</div>
+        </header>
+
+        <div class="wrapper">
+            <section class="offer">
+                <div class="Container">
+                    <div class="offer__wrapper">
+                        <h1 class="offer__title">
+                            Подарки <br> для<span>девушки</span>
+                        </h1>
+                        <p class="offer__text">
+                            Высокое качество позиционных исследований способствует повышению качества анализа существующих паттернов поведения. В своём стремлении повысить качество жизни, они забывают, что
+                        </p>
+                    </div>
+                    <img src="../img/offer.png" alt="" class="offer__img">
+                </div>
+            </section>
+            <section class="planning">
+                <div class="Container">
+                    <img src="../img/planning.png" alt="" class="planning__img">
+                    <div class="planning__wrapper">
+                        <h2 class="planning__title">
+                            Перспективное планирование
+                        </h2>
+                        <p class="planning__text js-showAllBlock">
+                            перспективное планирование позволяет оценить значение экспериментов, поражающих по своей масштабности и грандиозности. Принимая во внимание показатели успешности, понимание сути ресурсосберегающих технологий предопределяет высокую востребованность приоритизации разума над эмоциями. Как уже неоднократно упомянуто, диаграммы связей формируют глобальную экономическую сеть и при этом - ассоциативно распределены по отраслям! Элементы политического процесса являются только методом политического участия и объявлены нарушающими общечеловеческие нормы этики и морали.
+                        </p>
+                        <div class="planning__show js-showAll">
+                            Подробнее
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="selection">
+                <div class="Container">
+                    <h2 class="selection__title">
+                        Подборки<span>подарков</span>
+                    </h2>
+                    <ul class="selection__wrapper">
+                        <li class="selection-card">
+                            <a href="javscript:void(0)" class="selection-card__link">
+                                <picture>
+                                    <source srcset="./img/article_page/selection_one-mob.jpg" media="(max-width: 769px)">
+                                    <img src="./img/article_page/selection_one.png" alt="" class="selection-card__img">
+                                </picture>
+                                <div class="selection-card__name">
+                                    Путешественница
+                                </div>
+                            </a>
+                        </li>
+                        <li class="selection-card">
+                            <a href="javscript:void(0)" class="selection-card__link">
+                                <picture>
+                                    <source srcset="./img/article_page/selection_two-mob.jpg" media="(max-width: 769px)">
+                                    <img src="./img/article_page/selection_two.png" alt="" class="selection-card__img">
+                                </picture>
+                                <div class="selection-card__name">
+                                    Интеллектуалка
+                                </div>
+                            </a>
+                        </li>
+                        <li class="selection-card">
+                            <a href="javscript:void(0)" class="selection-card__link">
+                                <picture>
+                                    <source srcset="./img/article_page/selection_three-mob.jpg" media="(max-width: 769px)">
+                                    <img src="./img/article_page/selection_three.png" alt="" class="selection-card__img">
+                                </picture>
+                                <div class="selection-card__name">
+                                    Модница
+                                </div>
+                            </a>
+                        </li>
+                        <li class="selection-card">
+                            <a href="javscript:void(0)" class="selection-card__link">
+                                <picture>
+                                    <source srcset="./img/article_page/selection_four-mob.jpg" media="(max-width: 769px)">
+                                    <img src="./img/article_page/selection_four.png" alt="" class="selection-card__img">
+                                </picture>
+                                <div class="selection-card__name">
+                                    Хозяйка
+                                </div>
+                            </a>
+                        </li>
+                        <li class="selection-card">
+                            <a href="javscript:void(0)" class="selection-card__link">
+                                <picture>
+                                    <source srcset="./img/article_page/selection_five-mob.jpg" media="(max-width: 769px)">
+                                    <img src="./img/article_page/selection_five.png" alt="" class="selection-card__img">
+                                </picture>
+                                <div class="selection-card__name">
+                                    Творческая
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <img src="./img/article_page/decore_one.svg" alt="" class="selection__decore selection__decore_one">
+                    <img src="./img/article_page/decore_two.svg" alt="" class="selection__decore selection__decore_two">
+                </div>
+            </section>
+            <section class="recent">
+                <div class="Container">
+                    <h2 class="recent__title">
+                        Недавние<span>публикации</span>
+                    </h2>
+                    <ul class="recent__wrapper">
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_one.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    Подарочные наборы для женщин: модницам, кулинарам и творческим личностям
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_two.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    Весенняя перезагрузка: подарки для обновления души и тела
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_three.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    ТОП-20 гаджетов для современных девушек
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_four.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    Что подарить женщине на юбилей? Презенты для тех, кому немного за 18
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_five.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    Подарки, искрящиеся, как шампанское, и пьянящие, как вино
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_six.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    All you need is love: 10 подарков для романтичной весны
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_seven.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    25 небанальных подарков для любимых
+                                </p>
+                            </a>
+                        </li>
+                        <li class="recent-card">
+                            <a href="javscript:void(0)" class="recent-card__link">
+                                <img src="./img/article_page/recent_eight.jpg" alt="" class="recent-card__img">
+                                <p class="recent-card__text">
+                                    25 небанальных подарков для любимых
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="recent__btn js-showMoreCard">
+                        Показать ещё
+                    </div>
+                    <img src="./img/article_page/decore_three.svg" alt="" class="recent__decore recent__decore_one">
+                    <img src="./img/article_page/decore_four.svg" alt="" class="recent__decore recent__decore_two">
+                    <img src="./img/article_page/decore_five.svg" alt="" class="recent__decore recent__decore_three">
+                </div>
+            </section>
+            <section class="partners">
+                <div class="Container">
+                    <div class="partners_content">
+                        <div class="partners_title">
+                            <div class="bubble"></div>
+                            <p>Наши</p>
+                            <span>партнёры</span>
+                        </div>
+                        <div class="partners_partner2"></div>
+                        <div class="partners_partner1"></div>
+                        <div class="partners_partner3"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+        	<div class="Container">
+        		<div class="footer_content">
+        			<div class="footer_left-block">
+        				<img class="footer_logo" src="./img/footer-logo.png">
+        				<div class="footer_text__gray desktop-hidden">Подписывайтесь на нас</div>
+        				<div class="footer_icons desktop-hidden">
+        					<div class="footer_icon"><img src="./img/icon-vk.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-fb.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-dzen.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-inst.svg"></div>
+        				</div>
+        				<div class="footer_subscribe-white">Подпишитесь на рассылку</div>
+        				<div class="footer_subscribe-red">Подписаться</div>
+        			</div>
+        			<div class="footer_center-block">
+        				<div class="footer_link">Подарки для мальчиков</div>
+        				<div class="footer_link">Подарки для девочек</div>
+        				<div class="footer_link">О нас</div>
+        				<div class="footer_link">Связаться с нами</div>
+        				<div class="footer_link">Политика конфиденциальности</div>
+        			</div>
+        			<div class="footer_right-block">
+        				<div class="footer_big-text">О нас</div>
+        				<div class="footer_text">
+        					Серьёзные и не очень, красивые и с изюминкой, милые и оригинальные — наш сайт  предлагает подборки подарков 
+        					на любой случай: глаза разбегаются! А сориентироваться в таком разнообразии помогут наши эксперты
+        				</div>
+        				<div class="footer_text__gray mobile-hidden">Подписывайтесь на нас</div>
+        				<div class="footer_icons mobile-hidden">
+        					<div class="footer_icon"><img src="./img/icon-vk.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-fb.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-dzen.svg"></div>
+        					<div class="footer_icon"><img src="./img/icon-inst.svg"></div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </footer>
+        <script src="js/main.js" async></script>
+    </body>
+</html>
