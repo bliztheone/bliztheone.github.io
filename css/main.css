@@ -557,9 +557,16 @@ select[multiple] {
     -ms-flex-pack: center;
         justify-content: center;
     border-radius: 3.5px;
-    margin-right: 12px; }
+    margin-right: 12px;
+    transition: 150ms; }
+    .footer_icon svg {
+      fill: #E95A4A;
+      transition: 150ms; }
     .footer_icon:hover {
-      cursor: pointer; }
+      cursor: pointer;
+      background: #E95A4A; }
+      .footer_icon:hover svg {
+        fill: white !important; }
 
 .header {
   padding: 30px 0;
@@ -1383,7 +1390,7 @@ body {
     padding: 23px 21px 35px 21px;
     margin-bottom: 30px;
     bottom: 0;
-    transition: 100ms ease-out; }
+    transition: 100ms; }
     @media (min-width: 540px) and (max-width: 1000px) {
       .cards-block_block {
         padding: 10px 10px 15px 10px; } }
@@ -1499,7 +1506,7 @@ body {
       height: 210px;
       padding: 9px 12px 11px 13px;
       bottom: 0;
-      transition: 100ms ease-out; }
+      transition: 75ms ease-out; }
       @media (max-width: 540px) {
         .slider-block .mobile-slider .mobile-slider-item {
           background: none;
