@@ -471,6 +471,10 @@ select[multiple] {
     font-size: 14px;
     line-height: 132.9%;
     float: right; }
+    .footer_subscribe-red:hover {
+      cursor: pointer;
+      background: rgb(204, 72, 57);
+    }
     @media (min-width: 680px) and (max-width: 900px) {
       .footer_subscribe-red {
         padding: 10px 10px 10px 5px;
