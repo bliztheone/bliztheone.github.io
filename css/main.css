@@ -1370,6 +1370,9 @@ body {
     padding: 16px 26px;
     background: #E95A4A;
     border-radius: 13.1021px; }
+    .cards-block .show-more-grid:hover {
+      background: #d15143;
+      cursor: pointer; }
   .cards-block_block {
     position: relative;
     background: #FFFFFF;
