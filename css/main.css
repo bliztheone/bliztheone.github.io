@@ -626,6 +626,8 @@ select[multiple] {
     font-weight: 500;
     font-size: 18px;
     line-height: 132.9%; }
+    .header_nav-item:hover {
+      cursor: pointer; }
     @media (min-width: 540px) and (max-width: 1200px) {
       .header_nav-item {
         font-size: 16px;
@@ -634,6 +636,8 @@ select[multiple] {
       font-weight: 500;
       font-size: 18px;
       line-height: 132.9%; }
+      .header_nav-item .dropbtn:hover {
+        cursor: pointer; }
       @media (min-width: 900px) and (max-width: 1200px) {
         .header_nav-item .dropbtn {
           font-size: 16px; } }
@@ -693,8 +697,7 @@ select[multiple] {
   display: none;
   position: absolute;
   right: -12px;
-  min-width: 160px;
-  z-index: 1; }
+  min-width: 160px; }
 
 .spacer {
   position: relative;
@@ -2073,7 +2076,8 @@ body {
     padding-bottom: 140px; }
     .recent__holidays .recent__title {
       font-weight: 800;
-      font-size: 68px; }
+      font-size: 68px;
+      z-index: 1; }
       .recent__holidays .recent__title span {
         padding: 7px 22px;
         color: #E95A4A;
@@ -2086,8 +2090,7 @@ body {
           width: 70px;
           height: 87px;
           top: -60px;
-          right: -70px;
-          z-index: 99999; }
+          right: -70px; }
           @media (max-width: 540px) {
             .recent__holidays .recent__title span:before {
               width: 50px;
