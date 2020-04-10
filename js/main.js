@@ -18626,7 +18626,7 @@ if ($(window).width() < 540) {
 // Фиксирование блока "поделиться" на сранице публикации
 const defaultPosition = document.querySelector(".Publication_post-side-pannel__js").offsetTop;
 var endPosition = document.querySelector(".Publication_button-group__js").offsetTop;
-endPosition = endPosition - 127;
+endPosition = endPosition - 66;
 
 $(window).scroll(function(){
 	
@@ -18656,7 +18656,7 @@ const contentLeftPosition = document.querySelector(".Publication_nav-block__js")
 $('.Publication_nav-block__js').css({ left: contentLeftPosition});
 
 var endContentPosition = document.querySelector(".Publication_button-group__js").offsetTop;
-endContentPosition = endContentPosition - 254;
+endContentPosition = endContentPosition - 193;
 
 $(window).scroll(function(){
 	
