@@ -18622,3 +18622,58 @@ if ($(window).width() < 540) {
 		dislikeBlock.removeClass('open');
 	}
 }
+
+// Фиксирование блока "поделиться" на сранице публикации
+const defaultPosition = document.querySelector(".Publication_post-side-pannel__js").offsetTop;
+var endPosition = document.querySelector(".Publication_button-group__js").offsetTop;
+endPosition = endPosition - 66;
+
+$(window).scroll(function(){
+	
+	// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
+	if ($(window).scrollTop() > defaultPosition - 20) {
+		$('.Publication_post-side-pannel__js').addClass('Publication_post-side-pannel__fixed');
+	}
+	else {
+		$('.Publication_post-side-pannel__js').removeClass('Publication_post-side-pannel__fixed');
+	}
+	
+	// при скроле ниже крайнего положения, блоку задается с
+	if ($(window).scrollTop() > endPosition - 20) {
+		pos = endPosition - $(window).scrollTop() + "px";
+		$('.Publication_post-side-pannel__js').css({ top: pos});
+	}
+	else {
+		$('.Publication_post-side-pannel__js').css({ top: "20px"});
+	}
+});
+
+// Фиксирование блока "Содержание" на сранице публикации
+const defaultContentPosition = document.querySelector(".Publication_nav-block__js").offsetTop;
+
+// Указываем позицию блока при данной ширине по горизонтали
+const contentLeftPosition = document.querySelector(".Publication_nav-block__js").offsetLeft;
+$('.Publication_nav-block__js').css({ left: contentLeftPosition});
+
+var endContentPosition = document.querySelector(".Publication_button-group__js").offsetTop;
+endContentPosition = endContentPosition - 193;
+
+$(window).scroll(function(){
+	
+	// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
+	if ($(window).scrollTop() > defaultContentPosition - 20) {
+		$('.Publication_nav-block__js').addClass('Publication_nav-block__fixed');
+	}
+	else {
+		$('.Publication_nav-block__js').removeClass('Publication_nav-block__fixed');
+	}
+	
+	// при скроле ниже крайнего положения, блоку задается положение по высоте таким образом, чтобы он оставался на месте
+	if ($(window).scrollTop() > endContentPosition - 20) {
+		let pos = endContentPosition - $(window).scrollTop() + "px";
+		$('.Publication_nav-block__js').css({ top: pos});
+	}
+	else {
+		$('.Publication_nav-block__js').css({ top: "20px"});
+	}
+});
