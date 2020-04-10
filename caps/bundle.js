@@ -135,6 +135,28 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/js/components/inputTypeFile.js":
+/*!********************************************!*\
+  !*** ./src/js/components/inputTypeFile.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var inputs = document.querySelectorAll('.input__file');
+/* harmony default export */ __webpack_exports__["default"] = (Array.prototype.forEach.call(inputs, function (input) {
+  var label = input.nextElementSibling,
+      labelVal = label.querySelector('.input__file-button-text').innerText;
+  input.addEventListener('change', function (e) {
+    var countFiles = '';
+    if (this.files && this.files.length >= 1) countFiles = this.files.length;
+    if (countFiles) label.querySelector('.input__file-button-text').innerText = 'Файл добавлен';else label.querySelector('.input__file-button-text').innerText = labelVal;
+  });
+}));
+
+/***/ }),
+
 /***/ "./src/js/components/vacanciesSlider.js":
 /*!**********************************************!*\
   !*** ./src/js/components/vacanciesSlider.js ***!
@@ -169,6 +191,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jquery_min_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jquery.min.js */ "./src/js/jquery.min.js");
 /* harmony import */ var _slick_min_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick.min.js */ "./src/js/slick.min.js");
 /* harmony import */ var _components_vacanciesSlider_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/vacanciesSlider.js */ "./src/js/components/vacanciesSlider.js");
+/* harmony import */ var _components_inputTypeFile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/inputTypeFile */ "./src/js/components/inputTypeFile.js");
+
 
 
 
