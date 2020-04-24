@@ -528,7 +528,7 @@ select[multiple] {
         font-size: 17px; } }
     .footer_link:hover {
       cursor: pointer;
-      color: #d4dbff; }
+      text-decoration: underline; }
     .footer_link:last-child {
       margin-bottom: 0; }
   .footer_right-block {

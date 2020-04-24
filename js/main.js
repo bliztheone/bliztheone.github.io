@@ -18682,10 +18682,7 @@ if (document.querySelector(".Publication_nav-block__js")) {
 		}
 	});
 };
-const formSubscribe = document.querySelector('.modal-form__js');
-
-formSubscribe.onsubmit = function() {
-	
+function showModal() {
 	let modal = document.querySelector($(this).data("target"));
 	
 	let close = $($(this).data("target")).find('.close__js')
@@ -18703,10 +18700,39 @@ formSubscribe.onsubmit = function() {
 			modal.style.display = "none";
 		}
 	}
-	
-	return false
 }
 
+// функция проверки введенных данных на валидность имейла
+function validateEmail(email) {
+	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+}
+
+// функция проверки валидности имейла
+function validate() {
+	var $result = $(".footer_subscribe-error-text__js");
+	var email = $(".email-input__js").val();
+	$result.text("");
+	
+	// если валидация прошла успешно убираем стили и текст ошиби + открываем модальное окно
+	if (validateEmail(email)) {
+		$result.text("");
+		$(".email-input__js").removeClass('error')
+		showModal();
+	}
+	
+	// если валидация прошла не успешно, добавляем текст и стиль ошибки
+	else {
+		$result.text("Вы указали несуществующий e-mail");
+		$(".email-input__js").addClass('error')
+	}
+}
+
+// привязываем функцию валидации к клику по кнопке "подписаться"
+$('.footer_subscribe__js').on('click', validate )
+
+
+// при наличии на сранице открытого модального окна успешной подписки добавляется функционал для закрытия окна
 if ($('#modal-subscribed').length > 0) {
 	
 	let modal = document.querySelector('#modal-subscribed');

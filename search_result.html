@@ -204,15 +204,16 @@
         						</svg>
         					</div>
         				</div>
-        				<form class="footer_subscribe-form modal-form__js" data-target=".modal-send-mail">
+        				<div class="footer_subscribe-form modal-form__js">
         					<!-- для при ошибке ввода добавляется класс eror для input -->
-        					<input type="text" placeholder="Подпишитесь на рассылку" class="footer_subscribe-white" required/>
-        					<button href="javascript:void(0);" type="submit" data-target=".modal-send-mail"
-        					class="footer_subscribe-red">
+        					<input 	type="text" placeholder="Подпишитесь на рассылку" 
+        							class="footer_subscribe-white email-input__js"/>
+        					<a href="javascript:void(0);" data-target=".modal-send-mail"
+        							class="footer_subscribe-red footer_subscribe__js">
         						Подписаться
-        				</button>
-        				</form>
-        				<p class="footer_subscribe-error-text"></p>
+        					</a>
+        				</div>
+        				<p class="footer_subscribe-error-text footer_subscribe-error-text__js"></p>
         			</div>
         			<div class="footer_center-block">
         				<div class="footer_link">Подарки для мальчиков</div>
