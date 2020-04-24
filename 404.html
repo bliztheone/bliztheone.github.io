@@ -7,7 +7,7 @@
             <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta charset="utf-8">
-            <link href="css/main.css" rel="stylesheet" />
+            <link href="css/main.css?v=4792ed5ba94fb6cc157286140e013c7d" rel="stylesheet" />
     </head>
     <body>
         <header class="header">
@@ -198,8 +198,15 @@
         						</svg>
         					</div>
         				</div>
-        				<div class="footer_subscribe-white">Подпишитесь на рассылку</div>
-        				<div class="footer_subscribe-red">Подписаться</div>
+        				<form class="footer_subscribe-form">
+        					<!-- для при ошибке ввода добавляется класс eror для input -->
+        					<input type="text" placeholder="Подпишитесь на рассылку" class="footer_subscribe-white" />
+        					<a href="javascript:void(0);" type="submit" data-target=".modal-send-mail"
+        					class="footer_subscribe-red modal-button__js">
+        						Подписаться
+        					</a>
+        				</form>
+        				<p class="footer_subscribe-error-text"></p>
         			</div>
         			<div class="footer_center-block">
         				<div class="footer_link">Подарки для мальчиков</div>
@@ -241,6 +248,26 @@
         		</div>
         	</div>
         </footer>
-        <script src="js/main.js" async></script>
+        
+        <!-- модалка "мы отправили письмо" -->
+        <div id="modal-send-mail" class="modal modal-send-mail">
+        	<div class="modal_content">
+        		<span class="modal_close close__js">
+        			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        				<path fill-rule="evenodd" clip-rule="evenodd" d="M2.88569 0.885933C2.3965 0.396746 1.60338 0.396746 1.11419 0.885933C0.625004 1.37512 0.625003 2.16825 1.11419 2.65743L6.29948 7.84273L0.887771 13.2544C0.397436 13.7448 0.397436 14.5398 0.887772 15.0301C1.37811 15.5204 2.1731 15.5204 2.66343 15.0301L8.07515 9.61839L13.4848 15.0281C13.974 15.5173 14.7671 15.5173 15.2563 15.0281C15.7455 14.5389 15.7455 13.7458 15.2563 13.2566L9.84665 7.84689L15.0299 2.66363C15.5202 2.17329 15.5202 1.3783 15.0299 0.887966C14.5396 0.397631 13.7446 0.39763 13.2542 0.887966L8.07098 6.07123L2.88569 0.885933Z" fill="#353B48"/>
+        			</svg>
+        		</span>
+        		<div class="modal_red-icon">
+        			<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        				<path d="M3 12L12 21L30 3" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        			</svg>
+        		</div>
+        		<h4 class="modal_mail-title">Мы отправили на указанный e-mail письмо</h4>
+        		<p class="modal_text">Перейдите на в почту и подтвердите согласие на рассылку</p>
+        		<a href="javascript:void(0);" class="modal_button close__js">Хорошо</a>
+        	</div>
+        </div>
+        
+        <script src="js/main.js?v=4792ed5ba94fb6cc157286140e013c7d" async></script>
     </body>
 </html>

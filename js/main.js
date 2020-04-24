@@ -18623,57 +18623,103 @@ if ($(window).width() < 540) {
 	}
 }
 
-// Фиксирование блока "поделиться" на сранице публикации
-const defaultPosition = document.querySelector(".Publication_post-side-pannel__js").offsetTop;
-var endPosition = document.querySelector(".Publication_button-group__js").offsetTop;
-endPosition = endPosition - 66;
+if (document.querySelector(".Publication_post-side-pannel__js")) {
 
-$(window).scroll(function(){
+	// Фиксирование блока "поделиться" на сранице публикации
+	const defaultPosition = document.querySelector(".Publication_post-side-pannel__js").offsetTop;
+	var endPosition = document.querySelector(".Publication_button-group__js").offsetTop;
+	endPosition = endPosition - 66;
 	
-	// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
-	if ($(window).scrollTop() > defaultPosition - 20) {
-		$('.Publication_post-side-pannel__js').addClass('Publication_post-side-pannel__fixed');
-	}
-	else {
-		$('.Publication_post-side-pannel__js').removeClass('Publication_post-side-pannel__fixed');
-	}
+	$(window).scroll(function(){
+		
+		// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
+		if ($(window).scrollTop() > defaultPosition - 20) {
+			$('.Publication_post-side-pannel__js').addClass('Publication_post-side-pannel__fixed');
+		}
+		else {
+			$('.Publication_post-side-pannel__js').removeClass('Publication_post-side-pannel__fixed');
+		}
+		
+		// при скроле ниже крайнего положения, блоку задается с
+		if ($(window).scrollTop() > endPosition - 20) {
+			pos = endPosition - $(window).scrollTop() + "px";
+			$('.Publication_post-side-pannel__js').css({ top: pos});
+		}
+		else {
+			$('.Publication_post-side-pannel__js').css({ top: "20px"});
+		}
+	});
+}
+
+if (document.querySelector(".Publication_nav-block__js")) {
+	// Фиксирование блока "Содержание" на сранице публикации
+	const defaultContentPosition = document.querySelector(".Publication_nav-block__js").offsetTop;
+
+	// Указываем позицию блока при данной ширине по горизонтали
+	const contentLeftPosition = document.querySelector(".Publication_nav-block__js").offsetLeft;
+	$('.Publication_nav-block__js').css({ left: contentLeftPosition});
+
+	var endContentPosition = document.querySelector(".Publication_button-group__js").offsetTop;
+	endContentPosition = endContentPosition - 193;
+
+	$(window).scroll(function(){
+		
+		// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
+		if ($(window).scrollTop() > defaultContentPosition - 20) {
+			$('.Publication_nav-block__js').addClass('Publication_nav-block__fixed');
+		}
+		else {
+			$('.Publication_nav-block__js').removeClass('Publication_nav-block__fixed');
+		}
+		
+		// при скроле ниже крайнего положения, блоку задается положение по высоте таким образом, чтобы он оставался на месте
+		if ($(window).scrollTop() > endContentPosition - 20) {
+			let pos = endContentPosition - $(window).scrollTop() + "px";
+			$('.Publication_nav-block__js').css({ top: pos});
+		}
+		else {
+			$('.Publication_nav-block__js').css({ top: "20px"});
+		}
+	});
+};
+const btn = document.querySelector('.modal-button__js');
+
+btn.onclick = function() {
 	
-	// при скроле ниже крайнего положения, блоку задается с
-	if ($(window).scrollTop() > endPosition - 20) {
-		pos = endPosition - $(window).scrollTop() + "px";
-		$('.Publication_post-side-pannel__js').css({ top: pos});
-	}
-	else {
-		$('.Publication_post-side-pannel__js').css({ top: "20px"});
-	}
-});
-
-// Фиксирование блока "Содержание" на сранице публикации
-const defaultContentPosition = document.querySelector(".Publication_nav-block__js").offsetTop;
-
-// Указываем позицию блока при данной ширине по горизонтали
-const contentLeftPosition = document.querySelector(".Publication_nav-block__js").offsetLeft;
-$('.Publication_nav-block__js').css({ left: contentLeftPosition});
-
-var endContentPosition = document.querySelector(".Publication_button-group__js").offsetTop;
-endContentPosition = endContentPosition - 193;
-
-$(window).scroll(function(){
+	let modal = document.querySelector($(this).data("target"));
 	
-	// при скроле ниже начального положение блока добавляется класс с фиксированным позиционированием
-	if ($(window).scrollTop() > defaultContentPosition - 20) {
-		$('.Publication_nav-block__js').addClass('Publication_nav-block__fixed');
-	}
-	else {
-		$('.Publication_nav-block__js').removeClass('Publication_nav-block__fixed');
-	}
+	let close = $($(this).data("target")).find('.close__js')
 	
-	// при скроле ниже крайнего положения, блоку задается положение по высоте таким образом, чтобы он оставался на месте
-	if ($(window).scrollTop() > endContentPosition - 20) {
-		let pos = endContentPosition - $(window).scrollTop() + "px";
-		$('.Publication_nav-block__js').css({ top: pos});
+	modal.style.display = "flex";
+	
+	// When the user clicks on <span> (x), close the modal
+	close.on('click', function() {
+		modal.style.display = "none";
+	});
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
 	}
-	else {
-		$('.Publication_nav-block__js').css({ top: "20px"});
+}
+
+if ($('#modal-subscribed').length > 0) {
+	
+	let modal = document.querySelector('#modal-subscribed');
+	
+	let closeSubscribeModal = $('#modal-subscribed').find('.close__js')
+	
+	// When the user clicks on <span> (x), close the modal
+	closeSubscribeModal.on('click', function() {
+		modal.style.display = "none";
+	});
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
 	}
-});
+}
