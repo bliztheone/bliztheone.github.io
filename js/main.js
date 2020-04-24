@@ -18682,26 +18682,6 @@ if (document.querySelector(".Publication_nav-block__js")) {
 		}
 	});
 };
-function showModal() {
-	let modal = document.querySelector($(this).data("target"));
-	
-	let close = $($(this).data("target")).find('.close__js')
-	
-	modal.style.display = "flex";
-	
-	// When the user clicks on <span> (x), close the modal
-	close.on('click', function() {
-		modal.style.display = "none";
-	});
-	
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-}
-
 // функция проверки введенных данных на валидность имейла
 function validateEmail(email) {
 	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -18718,7 +18698,23 @@ function validate() {
 	if (validateEmail(email)) {
 		$result.text("");
 		$(".email-input__js").removeClass('error')
-		showModal();
+		let modal = document.querySelector($(this).data("target"));
+	
+		let close = $($(this).data("target")).find('.close__js')
+		
+		modal.style.display = "flex";
+		
+		// When the user clicks on <span> (x), close the modal
+		close.on('click', function() {
+			modal.style.display = "none";
+		});
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
 	}
 	
 	// если валидация прошла не успешно, добавляем текст и стиль ошибки
