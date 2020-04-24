@@ -3695,8 +3695,8 @@ body {
   background-color: black;
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 999;
   /* Black w/ opacity */
+  z-index: 999;
   /* Modal Content */
   /* The Close Button */ }
   .modal_content {

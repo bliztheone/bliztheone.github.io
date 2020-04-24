@@ -18682,9 +18682,9 @@ if (document.querySelector(".Publication_nav-block__js")) {
 		}
 	});
 };
-const btn = document.querySelector('.modal-button__js');
+const formSubscribe = document.querySelector('.modal-form__js');
 
-btn.onclick = function() {
+formSubscribe.onsubmit = function() {
 	
 	let modal = document.querySelector($(this).data("target"));
 	
@@ -18703,6 +18703,8 @@ btn.onclick = function() {
 			modal.style.display = "none";
 		}
 	}
+	
+	return false
 }
 
 if ($('#modal-subscribed').length > 0) {

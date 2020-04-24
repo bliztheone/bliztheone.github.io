@@ -7,7 +7,7 @@
             <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta charset="utf-8">
-            <link href="css/main.css?v=4792ed5ba94fb6cc157286140e013c7d" rel="stylesheet" />
+            <link href="css/main.css" rel="stylesheet" />
     </head>
     <body>
         <header class="header">
@@ -561,13 +561,13 @@
         						</svg>
         					</div>
         				</div>
-        				<form class="footer_subscribe-form">
+        				<form class="footer_subscribe-form modal-form__js" data-target=".modal-send-mail">
         					<!-- для при ошибке ввода добавляется класс eror для input -->
-        					<input type="text" placeholder="Подпишитесь на рассылку" class="footer_subscribe-white" />
-        					<a href="javascript:void(0);" type="submit" data-target=".modal-send-mail"
-        					class="footer_subscribe-red modal-button__js">
+        					<input type="text" placeholder="Подпишитесь на рассылку" class="footer_subscribe-white" required/>
+        					<button href="javascript:void(0);" type="submit" data-target=".modal-send-mail"
+        					class="footer_subscribe-red">
         						Подписаться
-        					</a>
+        				</button>
         				</form>
         				<p class="footer_subscribe-error-text"></p>
         			</div>
@@ -631,6 +631,6 @@
         	</div>
         </div>
         
-        <script src="js/main.js?v=4792ed5ba94fb6cc157286140e013c7d" async></script>
+        <script src="js/main.js" async></script>
     </body>
 </html>
