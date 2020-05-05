@@ -177,7 +177,15 @@ module.exports = function(originalModule) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "casesSlider", function() { return casesSlider; });
 function casesSlider() {
-  if ($(window).width() <= '540' && $(window).width() > '340') {
+  if ($(window).width() <= '968' && $(window).width() > '540') {
+    $('.cases_card-slider__js').slick({
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      arrows: false,
+      dots: true
+    });
+  } else if ($(window).width() <= '540' && $(window).width() > '340') {
     $('.cases_card-slider__js').slick({
       infinite: false,
       slidesToShow: 3,
