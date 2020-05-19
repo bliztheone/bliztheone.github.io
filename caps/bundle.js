@@ -206,6 +206,25 @@ function casesSlider() {
 
 /***/ }),
 
+/***/ "./src/js/components/initNiceSelect.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/initNiceSelect.js ***!
+  \*********************************************/
+/*! exports provided: initNiceSelect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initNiceSelect", function() { return initNiceSelect; });
+function initNiceSelect() {
+  $(document).ready(function () {
+    $('select').niceSelect();
+  });
+}
+;
+
+/***/ }),
+
 /***/ "./src/js/components/inputTypeFile.js":
 /*!********************************************!*\
   !*** ./src/js/components/inputTypeFile.js ***!
@@ -246,6 +265,93 @@ function phoneInputMask() {
 
 /***/ }),
 
+/***/ "./src/js/components/phoneMask.js":
+/*!****************************************!*\
+  !*** ./src/js/components/phoneMask.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return phoneMask; });
+function phoneMask() {
+  document.querySelectorAll('.js-PhoneMask').forEach(function (item) {
+    createMask(item);
+  });
+
+  function createMask(element) {
+    var keyCode;
+
+    var mask = function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var position = element.selectionStart;
+
+      if (position < 3 && event.keyCode != 35 && event.keyCode != 39) {
+        event.preventDefault();
+        element.selectionStart = element.value.length;
+      }
+
+      element.value = checkMask(event, element.value);
+
+      if (element.value[1] == '9') {
+        var valueArr = element.value.split('');
+        valueArr.splice(1, 0, '7');
+        var strValue = valueArr.join('');
+        strValue = strValue.replace(/[^+\d]/g, '');
+        element.value = checkMask(event, strValue);
+      } else {
+        element.value = element.value.replace(element.value[1], '7');
+      }
+    };
+
+    var checkMask = function checkMask(event, value) {
+      var matrix = "+7 (___) ___-__-__";
+      var i = 0;
+      var defaulthMask = matrix.replace(/\D/g, "");
+      var elementValue = value.replace(/\D/g, "");
+      var newElementValue = matrix.replace(/[_\d]/g, function (a) {
+        return i < elementValue.length ? elementValue.charAt(i++) || defaulthMask.charAt(i) : a;
+      });
+      i = newElementValue.indexOf("_");
+
+      if (i != -1) {
+        newElementValue = newElementValue.slice(0, i);
+      }
+
+      var reg = matrix.substr(0, value.length).replace(/_+/g, function (a) {
+        return "\\d{1," + a.length + "}";
+      }).replace(/[+()]/g, "\\$&");
+      reg = new RegExp("^" + reg + "$");
+
+      if (!reg.test(value) || value.length < 5 || keyCode > 47 && keyCode < 58) {
+        value = newElementValue;
+      }
+
+      if (event.type == "blur" && value.length < 5) {
+        value = "";
+      }
+
+      if (event.type == "input" && value.length < 5 && keyCode > 36 && keyCode < 41) {
+        event.preventDefault();
+      }
+
+      return value;
+    };
+
+    element.addEventListener("input", mask, false);
+    element.addEventListener("focus", mask, false);
+    element.addEventListener("blur", mask, false);
+    element.addEventListener("keydown", mask, false);
+    return mask;
+  }
+
+  ;
+}
+;
+
+/***/ }),
+
 /***/ "./src/js/components/vacanciesSlider.js":
 /*!**********************************************!*\
   !*** ./src/js/components/vacanciesSlider.js ***!
@@ -268,6 +374,74 @@ function vacanciesSlider() {
 
 /***/ }),
 
+/***/ "./src/js/components/yMap.js":
+/*!***********************************!*\
+  !*** ./src/js/components/yMap.js ***!
+  \***********************************/
+/*! exports provided: yandexMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "yandexMap", function() { return yandexMap; });
+function yandexMap() {
+  if ($(window).width() >= '768') {
+    ymaps.ready(function () {
+      var myMap = new ymaps.Map('map', {
+        center: [53.53681097572389, 49.35277309685072],
+        zoom: 15,
+        controls: []
+      }, {
+        searchControlProvider: 'yandex#search'
+      }),
+          myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+        hintContent: 'Собственный значок метки',
+        balloonContent: 'Это красивая метка'
+      }, {
+        // Опции.
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+        // Своё изображение иконки метки.
+        iconImageHref: 'img/map-tag.svg',
+        // Размеры метки.
+        iconImageSize: [46, 70],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-20, -70]
+      });
+      myMap.geoObjects.add(myPlacemark);
+    });
+  } else {
+    ymaps.ready(function () {
+      var myMap = new ymaps.Map('map', {
+        center: [53.53681097572389, 49.35277309685072],
+        zoom: 15,
+        controls: []
+      }, {
+        searchControlProvider: 'yandex#search'
+      }),
+          myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+        hintContent: 'Собственный значок метки',
+        balloonContent: 'Это красивая метка'
+      }, {
+        // Опции.
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+        // Своё изображение иконки метки.
+        iconImageHref: 'img/map-tag.svg',
+        // Размеры метки.
+        iconImageSize: [34, 53],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-15, -50]
+      });
+      myMap.geoObjects.add(myPlacemark);
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/index.js":
 /*!*************************!*\
   !*** ./src/js/index.js ***!
@@ -280,10 +454,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jquery_min_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jquery.min.js */ "./src/js/jquery.min.js");
 /* harmony import */ var _slick_min_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slick.min.js */ "./src/js/slick.min.js");
 /* harmony import */ var _inputmask_min_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputmask.min.js */ "./src/js/inputmask.min.js");
-/* harmony import */ var _components_vacanciesSlider_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/vacanciesSlider.js */ "./src/js/components/vacanciesSlider.js");
-/* harmony import */ var _components_inputTypeFile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/inputTypeFile */ "./src/js/components/inputTypeFile.js");
-/* harmony import */ var _components_casesSlider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/casesSlider */ "./src/js/components/casesSlider.js");
-/* harmony import */ var _components_phoneIinputMask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/phoneIinputMask */ "./src/js/components/phoneIinputMask.js");
+/* harmony import */ var _jquery_nice_select_min_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./jquery.nice-select.min.js */ "./src/js/jquery.nice-select.min.js");
+/* harmony import */ var _components_vacanciesSlider_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/vacanciesSlider.js */ "./src/js/components/vacanciesSlider.js");
+/* harmony import */ var _components_inputTypeFile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/inputTypeFile */ "./src/js/components/inputTypeFile.js");
+/* harmony import */ var _components_casesSlider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/casesSlider */ "./src/js/components/casesSlider.js");
+/* harmony import */ var _components_phoneIinputMask__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/phoneIinputMask */ "./src/js/components/phoneIinputMask.js");
+/* harmony import */ var _components_yMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/yMap */ "./src/js/components/yMap.js");
+/* harmony import */ var _components_initNiceSelect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/initNiceSelect */ "./src/js/components/initNiceSelect.js");
+/* harmony import */ var _components_phoneMask_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/phoneMask.js */ "./src/js/components/phoneMask.js");
+
+
+
+
 
 
 
@@ -292,9 +474,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', function () {
-  Object(_components_vacanciesSlider_js__WEBPACK_IMPORTED_MODULE_3__["vacanciesSlider"])();
-  Object(_components_casesSlider__WEBPACK_IMPORTED_MODULE_5__["casesSlider"])();
-  Object(_components_phoneIinputMask__WEBPACK_IMPORTED_MODULE_6__["phoneInputMask"])();
+  Object(_components_vacanciesSlider_js__WEBPACK_IMPORTED_MODULE_4__["vacanciesSlider"])();
+  Object(_components_casesSlider__WEBPACK_IMPORTED_MODULE_6__["casesSlider"])();
+  Object(_components_phoneIinputMask__WEBPACK_IMPORTED_MODULE_7__["phoneInputMask"])();
+  Object(_components_yMap__WEBPACK_IMPORTED_MODULE_8__["yandexMap"])();
+  Object(_components_initNiceSelect__WEBPACK_IMPORTED_MODULE_9__["initNiceSelect"])();
+  Object(_components_phoneMask_js__WEBPACK_IMPORTED_MODULE_10__["default"])();
 });
 
 /***/ }),
@@ -4777,6 +4962,88 @@ __webpack_require__.r(__webpack_exports__);
   }, e || (C.jQuery = C.$ = k), k;
 }));
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./src/js/jquery.nice-select.min.js":
+/*!******************************************!*\
+  !*** ./src/js/jquery.nice-select.min.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*  jQuery Nice Select - v1.0
+    https://github.com/hernansartorio/jquery-nice-select
+    Made by Hernán Sartorio  */
+/* harmony default export */ __webpack_exports__["default"] = (!function (e) {
+  e.fn.niceSelect = function (t) {
+    function s(t) {
+      t.after(e("<div></div>").addClass("nice-select").addClass(t.attr("class") || "").addClass(t.attr("disabled") ? "disabled" : "").attr("tabindex", t.attr("disabled") ? null : "0").html('<span class="current"></span><ul class="list"></ul>'));
+      var s = t.next(),
+          n = t.find("option"),
+          i = t.find("option:selected");
+      s.find(".current").html(i.data("display") || i.text()), n.each(function (t) {
+        var n = e(this),
+            i = n.data("display");
+        s.find("ul").append(e("<li></li>").attr("data-value", n.val()).attr("data-display", i || null).addClass("option" + (n.is(":selected") ? " selected" : "") + (n.is(":disabled") ? " disabled" : "")).html(n.text()));
+      });
+    }
+
+    if ("string" == typeof t) return "update" == t ? this.each(function () {
+      var t = e(this),
+          n = e(this).next(".nice-select"),
+          i = n.hasClass("open");
+      n.length && (n.remove(), s(t), i && t.next().trigger("click"));
+    }) : "destroy" == t ? (this.each(function () {
+      var t = e(this),
+          s = e(this).next(".nice-select");
+      s.length && (s.remove(), t.css("display", ""));
+    }), 0 == e(".nice-select").length && e(document).off(".nice_select")) : console.log('Method "' + t + '" does not exist.'), this;
+    this.hide(), this.each(function () {
+      var t = e(this);
+      t.next().hasClass("nice-select") || s(t);
+    }), e(document).off(".nice_select"), e(document).on("click.nice_select", ".nice-select", function (t) {
+      var s = e(this);
+      e(".nice-select").not(s).removeClass("open"), s.toggleClass("open"), s.hasClass("open") ? (s.find(".option"), s.find(".focus").removeClass("focus"), s.find(".selected").addClass("focus")) : s.focus();
+    }), e(document).on("click.nice_select", function (t) {
+      0 === e(t.target).closest(".nice-select").length && e(".nice-select").removeClass("open").find(".option");
+    }), e(document).on("click.nice_select", ".nice-select .option:not(.disabled)", function (t) {
+      var s = e(this),
+          n = s.closest(".nice-select");
+      n.find(".selected").removeClass("selected"), s.addClass("selected");
+      var i = s.data("display") || s.text();
+      n.find(".current").text(i), n.prev("select").val(s.data("value")).trigger("change");
+    }), e(document).on("keydown.nice_select", ".nice-select", function (t) {
+      var s = e(this),
+          n = e(s.find(".focus") || s.find(".list .option.selected"));
+      if (32 == t.keyCode || 13 == t.keyCode) return s.hasClass("open") ? n.trigger("click") : s.trigger("click"), !1;
+
+      if (40 == t.keyCode) {
+        if (s.hasClass("open")) {
+          var i = n.nextAll(".option:not(.disabled)").first();
+          i.length > 0 && (s.find(".focus").removeClass("focus"), i.addClass("focus"));
+        } else s.trigger("click");
+
+        return !1;
+      }
+
+      if (38 == t.keyCode) {
+        if (s.hasClass("open")) {
+          var l = n.prevAll(".option:not(.disabled)").first();
+          l.length > 0 && (s.find(".focus").removeClass("focus"), l.addClass("focus"));
+        } else s.trigger("click");
+
+        return !1;
+      }
+
+      if (27 == t.keyCode) s.hasClass("open") && s.trigger("click");else if (9 == t.keyCode && s.hasClass("open")) return !1;
+    });
+    var n = document.createElement("a").style;
+    return n.cssText = "pointer-events:auto", "auto" !== n.pointerEvents && e("html").addClass("no-csspointerevents"), this;
+  };
+}(jQuery));
 
 /***/ }),
 
