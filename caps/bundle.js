@@ -166,6 +166,76 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/js/components/anchorTransition.js":
+/*!***********************************************!*\
+  !*** ./src/js/components/anchorTransition.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return anchorTransition; });
+function anchorTransition() {
+  $(document).on('click', 'a[href^="#"]', function (e) {
+    var $target = $($(this).attr('href'));
+
+    if (!$target.length || $target.hasClass('modal')) {
+      return false;
+    }
+
+    $('html, body').animate({
+      scrollTop: $target.offset().top
+    }, 800);
+  }); // плавный переход к якорю
+
+  $("body").on('click', '.Button_to-top__js', function (e) {
+    e.preventDefault();
+    $('html,body').stop().animate({
+      scrollTop: 0
+    }, 500);
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/components/blogImageSlider.js":
+/*!**********************************************!*\
+  !*** ./src/js/components/blogImageSlider.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return blogImageSlider; });
+function blogImageSlider() {
+  if ($('.js-blog_big-image-slider').length > 0) {
+    // функция для отображение текущего слайда
+    var $status = $('.js-blog_big-image-current-slide');
+    var $slickElement = $('.js-blog_big-image-slider');
+    $slickElement.on('load init reInit beforeChange afterChange', function (event, slick, currentSlide, nextSlide) {
+      //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+      if (!slick.$dots) {
+        return;
+      }
+
+      var i = (currentSlide ? currentSlide : 0) + 1;
+      $status.text(i + ' из ' + slick.$dots[0].children.length);
+    }); // инициализация слайдера с большими картинками
+
+    $('.js-blog_big-image-slider').slick({
+      dots: true,
+      infinite: false,
+      speed: 300,
+      arrows: true,
+      slidesToShow: 1
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/components/casesSlider.js":
 /*!******************************************!*\
   !*** ./src/js/components/casesSlider.js ***!
@@ -244,6 +314,35 @@ var inputs = document.querySelectorAll('.input__file');
     if (countFiles) label.querySelector('.input__file-button-text').innerText = 'Файл добавлен';else label.querySelector('.input__file-button-text').innerText = labelVal;
   });
 }));
+
+/***/ }),
+
+/***/ "./src/js/components/otherArticlesSlider.js":
+/*!**************************************************!*\
+  !*** ./src/js/components/otherArticlesSlider.js ***!
+  \**************************************************/
+/*! exports provided: otherArticlesSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "otherArticlesSlider", function() { return otherArticlesSlider; });
+function otherArticlesSlider() {
+  if ($(window).width() <= '968') {
+    $('.js-other-articles_wrapper').slick({
+      infinite: false,
+      arrows: false,
+      dots: true,
+      slidesToShow: 2,
+      responsive: [{
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1
+        }
+      }]
+    });
+  }
+}
 
 /***/ }),
 
@@ -385,58 +484,60 @@ function vacanciesSlider() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "yandexMap", function() { return yandexMap; });
 function yandexMap() {
-  if ($(window).width() >= '768') {
-    ymaps.ready(function () {
-      var myMap = new ymaps.Map('map', {
-        center: [53.53681097572389, 49.35277309685072],
-        zoom: 15,
-        controls: []
-      }, {
-        searchControlProvider: 'yandex#search'
-      }),
-          myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-        hintContent: 'Собственный значок метки',
-        balloonContent: 'Это красивая метка'
-      }, {
-        // Опции.
-        // Необходимо указать данный тип макета.
-        iconLayout: 'default#image',
-        // Своё изображение иконки метки.
-        iconImageHref: 'img/map-tag.svg',
-        // Размеры метки.
-        iconImageSize: [46, 70],
-        // Смещение левого верхнего угла иконки относительно
-        // её "ножки" (точки привязки).
-        iconImageOffset: [-20, -70]
+  if ($("#map").length > 0) {
+    if ($(window).width() >= '768') {
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+          center: [53.53681097572389, 49.35277309685072],
+          zoom: 15,
+          controls: []
+        }, {
+          searchControlProvider: 'yandex#search'
+        }),
+            myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+          hintContent: 'Собственный значок метки',
+          balloonContent: 'Это красивая метка'
+        }, {
+          // Опции.
+          // Необходимо указать данный тип макета.
+          iconLayout: 'default#image',
+          // Своё изображение иконки метки.
+          iconImageHref: 'img/map-tag.svg',
+          // Размеры метки.
+          iconImageSize: [46, 70],
+          // Смещение левого верхнего угла иконки относительно
+          // её "ножки" (точки привязки).
+          iconImageOffset: [-20, -70]
+        });
+        myMap.geoObjects.add(myPlacemark);
       });
-      myMap.geoObjects.add(myPlacemark);
-    });
-  } else {
-    ymaps.ready(function () {
-      var myMap = new ymaps.Map('map', {
-        center: [53.53681097572389, 49.35277309685072],
-        zoom: 15,
-        controls: []
-      }, {
-        searchControlProvider: 'yandex#search'
-      }),
-          myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-        hintContent: 'Собственный значок метки',
-        balloonContent: 'Это красивая метка'
-      }, {
-        // Опции.
-        // Необходимо указать данный тип макета.
-        iconLayout: 'default#image',
-        // Своё изображение иконки метки.
-        iconImageHref: 'img/map-tag.svg',
-        // Размеры метки.
-        iconImageSize: [34, 53],
-        // Смещение левого верхнего угла иконки относительно
-        // её "ножки" (точки привязки).
-        iconImageOffset: [-15, -50]
+    } else {
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+          center: [53.53681097572389, 49.35277309685072],
+          zoom: 15,
+          controls: []
+        }, {
+          searchControlProvider: 'yandex#search'
+        }),
+            myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+          hintContent: 'Собственный значок метки',
+          balloonContent: 'Это красивая метка'
+        }, {
+          // Опции.
+          // Необходимо указать данный тип макета.
+          iconLayout: 'default#image',
+          // Своё изображение иконки метки.
+          iconImageHref: 'img/map-tag.svg',
+          // Размеры метки.
+          iconImageSize: [34, 53],
+          // Смещение левого верхнего угла иконки относительно
+          // её "ножки" (точки привязки).
+          iconImageOffset: [-15, -50]
+        });
+        myMap.geoObjects.add(myPlacemark);
       });
-      myMap.geoObjects.add(myPlacemark);
-    });
+    }
   }
 }
 
@@ -462,6 +563,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_yMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/yMap */ "./src/js/components/yMap.js");
 /* harmony import */ var _components_initNiceSelect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/initNiceSelect */ "./src/js/components/initNiceSelect.js");
 /* harmony import */ var _components_phoneMask_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/phoneMask.js */ "./src/js/components/phoneMask.js");
+/* harmony import */ var _components_blogImageSlider_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/blogImageSlider.js */ "./src/js/components/blogImageSlider.js");
+/* harmony import */ var _components_otherArticlesSlider_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/otherArticlesSlider.js */ "./src/js/components/otherArticlesSlider.js");
+/* harmony import */ var _components_anchorTransition_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/anchorTransition.js */ "./src/js/components/anchorTransition.js");
+
+
+
 
 
 
@@ -480,6 +587,9 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_components_yMap__WEBPACK_IMPORTED_MODULE_8__["yandexMap"])();
   Object(_components_initNiceSelect__WEBPACK_IMPORTED_MODULE_9__["initNiceSelect"])();
   Object(_components_phoneMask_js__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_components_blogImageSlider_js__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_components_otherArticlesSlider_js__WEBPACK_IMPORTED_MODULE_12__["otherArticlesSlider"])();
+  Object(_components_anchorTransition_js__WEBPACK_IMPORTED_MODULE_13__["default"])();
 });
 
 /***/ }),
