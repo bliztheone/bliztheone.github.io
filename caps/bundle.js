@@ -236,6 +236,42 @@ function blogImageSlider() {
 
 /***/ }),
 
+/***/ "./src/js/components/burgerMenu.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/burgerMenu.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return burgerMenu; });
+function burgerMenu() {
+  $('.burger__js').on("click", function changeBurger() {
+    $(this).toggleClass("change");
+  });
+  var burger = $(".burger__js");
+  document.getElementById("mySidenav").style.width = "0"; //  Open the sidenav
+
+  function openNav(e) {
+    if (burger.hasClass("closed")) {
+      document.getElementById("mySidenav").style.width = "100%";
+      $(".city-name__js").addClass("closed");
+      burger.removeClass("closed");
+      $("body").addClass("unscrollable");
+    } else {
+      document.getElementById("mySidenav").style.width = "0";
+      burger.addClass("closed");
+      $("body").removeClass("unscrollable");
+    }
+  }
+
+  burger.click(openNav);
+}
+;
+
+/***/ }),
+
 /***/ "./src/js/components/casesSlider.js":
 /*!******************************************!*\
   !*** ./src/js/components/casesSlider.js ***!
@@ -314,6 +350,522 @@ var inputs = document.querySelectorAll('.input__file');
     if (countFiles) label.querySelector('.input__file-button-text').innerText = 'Файл добавлен';else label.querySelector('.input__file-button-text').innerText = labelVal;
   });
 }));
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/advantages.js":
+/*!**************************************************!*\
+  !*** ./src/js/components/mainPage/advantages.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return advantages; });
+function advantages() {
+  var advantagesContentBlock = $('.advantages_img-block__js');
+  var imgBlock = $('.advantages_img__js');
+  var textBlock = $('.advantages_img-text__js');
+
+  if ($(window).width() > '767') {
+    (function () {
+      // функция которая срабатывает при изменении активного элемента. добавляет анимацию изчезновления\появления 
+      // и также туда атрибутами прокидываются данные для отображения в блоке
+      var changeActiveItem = function changeActiveItem(src, text) {
+        advantagesContentBlock.animate({
+          opacity: 0
+        }, 200);
+        setTimeout(function () {
+          imgBlock.attr('src', src);
+          textBlock.text(text);
+          advantagesContentBlock.animate({
+            opacity: 1
+          }, 200);
+        }, 200);
+      };
+
+      if ($('.advantages__js').length > 0) {
+        var _loop = function _loop(i) {
+          document.querySelectorAll('.advantages_list-item__js')[i].addEventListener('click', function () {
+            // если этот элемент уже активен - ничего не делать
+            if ($(this).hasClass('active')) return;else {
+              $('.advantages_list-item__js').removeClass('active');
+              $(this).addClass('active');
+
+              if (i === 0) {
+                changeActiveItem('./img/advantages-img1.svg', 'Все работы выполняются на тестовом поддомене и переносятся на основной сайт только после тщательного тестирования.');
+              } else if (i === 1) {
+                changeActiveItem('./img/advantages-img2.svg', 'Оплата за продвижение, только в случае нахождения сайта в ТОПе поисковой выдачи. Условия работы согласовываются с заказчиком индивидуально');
+              } else if (i === 2) {
+                changeActiveItem('./img/advantages-img3.svg', 'В нашей команде более 50 узкоспециализированных специалистов — это позволяет каждому заниматься тем, в чем он профи!');
+              } else if (i === 3) {
+                changeActiveItem('./img/advantages-img4.svg', 'Персональный менеджер — человек, проникающий в суть вашего бизнеса. Он координирует внутреннюю работу, делая её четкой и отлаженной.');
+              } else if (i === 4) {
+                changeActiveItem('./img/advantages-img5.svg', 'Оплата за результат, все изменения на сайте согласовываются, ежемесячный отчет по динамике сайта, работа по договору');
+              } else if (i === 5) {
+                changeActiveItem('./img/advantages-img6.svg', 'Для нас каждый сайт индивидуален, мы не используем шаблонные решения!');
+              } else if (i === 6) {
+                changeActiveItem('./img/advantages-img7.svg', 'Мы не собираем ядро по 1500-3000 ключевых слов, мы берем только то, что может увеличить ВАШИ ПРОДАЖИ.');
+              }
+            }
+            ;
+          });
+        };
+
+        for (var i = 0; i < $('.advantages_list-item__js').length; i++) {
+          _loop(i);
+        }
+
+        ;
+      }
+
+      ;
+    })();
+  } // мобильная версия
+  else {
+      $('.advantages_list__js').slick({
+        infinite: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        appendDots: $('.advantages__js')
+      });
+    }
+}
+;
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/faq.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/mainPage/faq.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return faq; });
+function faq() {
+  // Faq
+  var faqDrop = document.querySelectorAll('.Dropdown');
+
+  function showText(event) {
+    if (event.target.className == "Dropdown Dropdown--active") {
+      event.target.classList.remove('Dropdown--active');
+    } else {
+      if (document.querySelector('.Dropdown--active')) {
+        var activeItem = document.querySelector('.Dropdown--active');
+        activeItem.classList.remove('Dropdown--active');
+        event.target.classList.add('Dropdown--active');
+      } else {
+        event.target.classList.add('Dropdown--active');
+      }
+    }
+  }
+
+  ;
+  faqDrop.forEach(function (item) {
+    item.addEventListener('click', showText);
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/mainHeadSlider.js":
+/*!******************************************************!*\
+  !*** ./src/js/components/mainPage/mainHeadSlider.js ***!
+  \******************************************************/
+/*! exports provided: mainHeadSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mainHeadSlider", function() { return mainHeadSlider; });
+function mainHeadSlider() {
+  if ($(".main-head_slider__js").length > 0) {
+    $('.main-head_slider__js').slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: true,
+      appendDots: $('.main-head__js')
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/platformSlider.js":
+/*!******************************************************!*\
+  !*** ./src/js/components/mainPage/platformSlider.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return platformSlider; });
+function platformSlider() {
+  if ($(".platform_slider__js").length > 0) {
+    $('.platform_slider__js').slick({
+      infinite: false,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      arrows: true,
+      dots: false,
+      appendDots: $('.platform__js'),
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2
+        }
+      }, {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false,
+          dots: true
+        }
+      }]
+    });
+  }
+
+  ;
+}
+;
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/resultsSlider.js":
+/*!*****************************************************!*\
+  !*** ./src/js/components/mainPage/resultsSlider.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return resultsSlider; });
+function resultsSlider() {
+  if ($(".results_slider__js").length > 0) {
+    // if ( $(window).width() <= '968' &&  $(window).width() > '540') {
+    $('.results_slider__js').slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: true,
+      appendDots: $('.results__js'),
+      responsive: [{
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false
+        }
+      }]
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/steps.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/mainPage/steps.js ***!
+  \*********************************************/
+/*! exports provided: steps */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "steps", function() { return steps; });
+function steps() {
+  if ($(".Container__progress-bar__js").length > 0) {
+    var i;
+
+    (function () {
+      // Функция в которой прописанна выводимая информация на определенных шагах
+      var makeUI = function makeUI() {
+        if (state === 0) {
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          $('#progress-bar').attr("value", "0");
+          setTimeout(function () {
+            // Задается тект который будет проставляться на определенной "стадии"
+            infoTitle.text("Сбор документации");
+            infoText.text("Сбор документации, предусмотренной ФЗ «О несостоятельности» (банкротстве) и необходимой для подачи заявления в суд, мы осуществим полностью за Вас.");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+        } else if (state === 1) {
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          $('#progress-bar').attr("value", "20");
+          setTimeout(function () {
+            infoTitle.text("Подготовка и подача");
+            infoText.text("Подготовим документацию, предусмотренную действующим законодательством, и подадим ее с комплектом собранной доказательственной базы в суд.");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+        } else if (state === 2) {
+          $('#progress-bar').attr("value", "40");
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          setTimeout(function () {
+            infoTitle.text("Судебная работа");
+            infoText.text("Представляем Ваши интересы в суде на всех стадиях процедуры банкротства: до признания. Вас банкротом и после, проверим все требования кредиторов, а также представим Ваши интересы на собрании кредиторов.");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+          ;
+        } else if (state === 3) {
+          $('#progress-bar').attr("value", "60");
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          setTimeout(function () {
+            infoTitle.text("Этап 4");
+            infoText.text("Ошибочно бытует мнение, что СРО обязано предоставить кандидатуру финансового управляющего. Это не так! Без личного согласия управляющего принудить его нельзя");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+        } else if (state === 4) {
+          $('#progress-bar').attr("value", "80");
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          setTimeout(function () {
+            infoTitle.text("Этап 5");
+            infoText.text("Если никто из управляющих не выразил согласия, СРО присылает в суд письменный отказ (это довольно-таки распространенная практика в настоящее время)");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+        } else if (state === 5) {
+          $('#progress-bar').attr("value", "100");
+          infoItem.animate({
+            opacity: 0
+          }, 100);
+          setTimeout(function () {
+            infoTitle.text("Вы видите реальный рост позиций и увеличение количества заявок");
+            infoText.text("Рост позиций сайта начинает приносить больше обращений от потенциальных клиентов. Нахождение сайта в ТОПе поисковой выдачи гарантирует максимальную видимость сайта и максимально увеличивает конверсию");
+            infoItem.animate({
+              opacity: 1
+            }, 100);
+          }, 100);
+        }
+
+        $(".state-active").removeClass("state-active");
+        $(".bar-item:eq(".concat(state, ")")).addClass("state-active");
+      }; // изменение переменной состояния при клике на шаги "прогресс бара"
+
+
+      var infoItem = $(".Steps_info-items__js");
+      var infoTitle = $(".Steps_info-title__js");
+      var infoText = $(".Steps_info-text__js");
+      var state = 0;
+      var maxState = $(".cont span").length - 1;
+      $(".cont span").click(function () {
+        $(this).prevAll().addClass("blue");
+        $(this).nextAll().removeClass("blue");
+        $(this).removeClass("blue");
+        state = $(this).data("id");
+        makeUI();
+      }); // анимация для мобильной версии
+
+      var progressBarContainer = $('.cont__js');
+
+      if ($(window).width() <= '767') {
+        var barItem = document.querySelectorAll('.bar-item__js');
+
+        var _loop = function _loop() {
+          var currentBarPos = void 0; // устанавливаем для прогрессбара позицию в зависимости от того на какой элемент нажали
+
+          switch (i) {
+            case 0:
+              currentBarPos = "0%";
+              break;
+
+            case 1:
+              currentBarPos = "-5%";
+              break;
+
+            case 2:
+              currentBarPos = "-40%";
+              break;
+
+            case 3:
+              currentBarPos = "-60%";
+              break;
+
+            case 4:
+              currentBarPos = "-95%";
+              break;
+
+            case 5:
+              currentBarPos = "-105%";
+              break;
+          }
+
+          barItem[i].addEventListener('click', function () {
+            progressBarContainer.css('left', currentBarPos);
+          });
+        };
+
+        for (i = 0; i < barItem.length; i++) {
+          _loop();
+        }
+      }
+
+      ;
+    })();
+  }
+
+  ;
+}
+;
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/tariffs.js":
+/*!***********************************************!*\
+  !*** ./src/js/components/mainPage/tariffs.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return tariffs; });
+function tariffs() {
+  $(document).on('click', '.tariffs_type-item__js', function (e) {
+    $(".tariffs_type-item__js.active").removeClass('active');
+    $(this).addClass('active');
+  });
+  var tariffInfoBlock = $('.tariffs_info-anim__js');
+  var tariffTitle = $('.tariffs_info-title__js');
+  var secondPriceBox = $('.tariffs_info-price-item__js');
+  var tariffPriceFirst = $('.tariffs_info-price-box-first__js');
+  var tariffRequests = $('.tariffs_info-price-box-second__js');
+  var tariffText = $('.tariffs_info-text__js'); // если нужно будет менять модалки в зависимости от выбранного тарифа
+
+  var tariffButton = $('.tariffs_info-button__js');
+  var tariffTransparentButton = $('.tariffs_info-button__transparent__js'); // функция которая срабатывает при изменении активного элемента. добавляет анимацию изчезновления\появления 
+  // и также туда атрибутами прокидываются данные для отображения в блоке
+
+  var changeActiveTariffs = function changeActiveTariffs(name, price, isSecondPriceBox, requests, text) {
+    tariffInfoBlock.animate({
+      opacity: 0
+    }, 200);
+    setTimeout(function () {
+      tariffTitle.text(name);
+      tariffPriceFirst.html(price);
+      if (!isSecondPriceBox) secondPriceBox.css('display', 'none');else secondPriceBox.css('display', 'flex');
+      tariffRequests.text(requests);
+      tariffText.text(text);
+      tariffInfoBlock.animate({
+        opacity: 1
+      }, 200);
+    }, 200);
+  };
+
+  if ($('.tariffs_type-item__js').length > 0) {
+    var _loop = function _loop(i) {
+      document.querySelectorAll('.tariffs_type-item__js')[i].addEventListener('click', function () {
+        // если этот элемент уже активен - ничего не делать
+        if ($(this).hasClass('active')) return;else {
+          $('.tariffs_type-item__js.active').removeClass('active');
+          $(this).addClass('active');
+
+          if (i === 0) {
+            changeActiveTariffs('light', 'от 15 000 <span class="rouble">o</span>', true, 'до 100', 'Хорошо подойдет региональным сайтам с умеренной конкуренцией. Если это про вас, то скорее всего в течение 2-4 месяцев вы займете топ-10 выдачи в своем регионе по 80-90% поисковых запросов.');
+          } else if (i === 1) {
+            changeActiveTariffs('middle', 'от 25 000 <span class="rouble">o</span>', true, 'до 500', 'Хорошо подойдет региональным сайтам с высокой конкуренцией; сайтам со среднеконкурентными тематиками с регионом продвижения Москва, Екатеринбург, Питер и др., а также сайтам, работающим по всей РФ в сфере с умеренной и высокой конкуренции');
+          } else if (i === 2) {
+            changeActiveTariffs('Exclusive', 'По согласованию', false, '', 'В данном тарифе учитывается не количество ключевых запросов, а составляется план роста посещаемости сайта. Оптимальный вариант для крупных сайтов с большим количеством ключевых запросов, а также продвигающихся по всей России, эффективен в том числе для интернет-магазинов.');
+          }
+
+          ;
+        }
+        ;
+      });
+    };
+
+    for (var i = 0; i < $('.tariffs_type-item__js').length; i++) {
+      _loop(i);
+    }
+
+    ;
+  }
+
+  ; // изменение фона в зависимости от ширины в мобильной версии
+
+  var tariffRectangle = $('.tariffs_rectangle__js');
+
+  if ($(window).width() <= '767' && $(window).width() > '320') {
+    var setTariffRectanglePosition = function setTariffRectanglePosition(e) {
+      var actualWidth = $(window).width();
+      var topPosition = -(actualWidth - 320) * 0.8;
+      var actualHeight = 295 + (actualWidth - 320) * 0.95;
+      var cssValues = {
+        "top": topPosition,
+        "height": actualHeight
+      };
+      tariffRectangle.css(cssValues);
+    };
+
+    setTariffRectanglePosition();
+    window.addEventListener("resize", setTariffRectanglePosition, false);
+  }
+}
+;
+
+/***/ }),
+
+/***/ "./src/js/components/mainPage/teamSlider.js":
+/*!**************************************************!*\
+  !*** ./src/js/components/mainPage/teamSlider.js ***!
+  \**************************************************/
+/*! exports provided: teamSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "teamSlider", function() { return teamSlider; });
+function teamSlider() {
+  if ($(".team_slider__js").length > 0) {
+    // if ( $(window).width() <= '968' &&  $(window).width() > '540') {
+    $('.team_slider__js').slick({
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      arrows: true,
+      dots: true,
+      appendDots: $('.team__js'),
+      responsive: [{
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }]
+    });
+  }
+}
 
 /***/ }),
 
@@ -566,6 +1118,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_blogImageSlider_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/blogImageSlider.js */ "./src/js/components/blogImageSlider.js");
 /* harmony import */ var _components_otherArticlesSlider_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/otherArticlesSlider.js */ "./src/js/components/otherArticlesSlider.js");
 /* harmony import */ var _components_anchorTransition_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/anchorTransition.js */ "./src/js/components/anchorTransition.js");
+/* harmony import */ var _components_mainPage_mainHeadSlider_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/mainPage/mainHeadSlider.js */ "./src/js/components/mainPage/mainHeadSlider.js");
+/* harmony import */ var _components_mainPage_teamSlider_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/mainPage/teamSlider.js */ "./src/js/components/mainPage/teamSlider.js");
+/* harmony import */ var _components_mainPage_steps_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/mainPage/steps.js */ "./src/js/components/mainPage/steps.js");
+/* harmony import */ var _components_mainPage_advantages_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/mainPage/advantages.js */ "./src/js/components/mainPage/advantages.js");
+/* harmony import */ var _components_mainPage_platformSlider_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/mainPage/platformSlider.js */ "./src/js/components/mainPage/platformSlider.js");
+/* harmony import */ var _components_mainPage_resultsSlider_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/mainPage/resultsSlider.js */ "./src/js/components/mainPage/resultsSlider.js");
+/* harmony import */ var _components_mainPage_tariffs_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/mainPage/tariffs.js */ "./src/js/components/mainPage/tariffs.js");
+/* harmony import */ var _components_mainPage_faq_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/mainPage/faq.js */ "./src/js/components/mainPage/faq.js");
+/* harmony import */ var _components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/burgerMenu.js */ "./src/js/components/burgerMenu.js");
+
+
+
+
+
+
+
+
+
 
 
 
@@ -590,6 +1160,15 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_components_blogImageSlider_js__WEBPACK_IMPORTED_MODULE_11__["default"])();
   Object(_components_otherArticlesSlider_js__WEBPACK_IMPORTED_MODULE_12__["otherArticlesSlider"])();
   Object(_components_anchorTransition_js__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  Object(_components_mainPage_mainHeadSlider_js__WEBPACK_IMPORTED_MODULE_14__["mainHeadSlider"])();
+  Object(_components_mainPage_teamSlider_js__WEBPACK_IMPORTED_MODULE_15__["teamSlider"])();
+  Object(_components_mainPage_steps_js__WEBPACK_IMPORTED_MODULE_16__["steps"])();
+  Object(_components_mainPage_advantages_js__WEBPACK_IMPORTED_MODULE_17__["default"])();
+  Object(_components_mainPage_platformSlider_js__WEBPACK_IMPORTED_MODULE_18__["default"])();
+  Object(_components_mainPage_resultsSlider_js__WEBPACK_IMPORTED_MODULE_19__["default"])();
+  Object(_components_mainPage_tariffs_js__WEBPACK_IMPORTED_MODULE_20__["default"])();
+  Object(_components_mainPage_faq_js__WEBPACK_IMPORTED_MODULE_21__["default"])();
+  Object(_components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__["default"])();
 });
 
 /***/ }),

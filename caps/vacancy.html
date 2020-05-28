@@ -47,7 +47,7 @@
 		</div>
 		<div class="header_bottom-content">
 			<div class="header_nav-wrapper">
-				<div class="header_burger-button">
+				<div class="header_burger-button burger__js closed">
 					<div></div>
 					<div></div>
 					<div></div>
@@ -67,15 +67,29 @@
 				</a>
 				
 				<nav class="header_nav">
-					<a href="javascript:viod(0);" class="header_nav-item header_nav-dropdown">
-						Услуги
-					</a>
+					<div class="header_nav-item header_nav-dropdown dropdown">
+						<span>Услуги</span>
+						<div class="dropdown-content">
+							<div class="spacer"></div>
+							<div class="links">
+								<a href="#">SEO-продвижение</a>
+								<a href="#">Продвижение по трафику</a>
+							</div>
+						</div>
+					</div>
 					<a href="javascript:viod(0);" class="header_nav-item">
 						Цены
 					</a>
-					<a href="javascript:viod(0);" class="header_nav-item header_nav-dropdown">
-						О компании
-					</a>
+					<div class="header_nav-item header_nav-dropdown dropdown">
+						<span>О компании</span>
+						<div class="dropdown-content">
+							<div class="spacer"></div>
+							<div class="links">
+								<a href="#">SEO-продвижение</a>
+								<a href="#">Продвижение по трафику</a>
+							</div>
+						</div>
+					</div>
 					<a href="javascript:viod(0);" class="header_nav-item">
 						Блог
 					</a>
@@ -91,6 +105,24 @@
 			</div>
 			<div>
 				<a href="javascript:viod(0);" class="header_button Button">Получить аудит сайта</a>
+			</div>
+		</div>
+		
+		<div id="mySidenav" class="sidenav">
+			<div class="sidenav_content">
+				<ul>
+					<li><a href="javascript:void(0);" class="sidenav_link">Услуги</a></li>
+					<li><a href="javascript:void(0);" class="sidenav_link">Цены</a></li>
+					<li><a href="javascript:void(0);" class="sidenav_link">О компании</a></li>
+					<li><a href="javascript:void(0);" class="sidenav_link">Блог</a></li>
+					<li><a href="javascript:void(0);" class="sidenav_link">Контакты</a></li>
+				</ul>
+				<span class="sidenav_input-wrapper">
+					<input type="text" class="sidenav_input">
+					<svg class="sidenav_input-img" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.59244 8.91027C10.4012 7.93355 10.8463 6.70615 10.8463 5.44161C10.8463 2.44088 8.41351 0 5.42362 0C2.43281 0 0 2.44088 0 5.44161C0 8.44141 2.43281 10.8823 5.42362 10.8823C6.70619 10.8823 7.94805 10.4208 8.93079 9.58154L13.2597 13.9248L13.3356 14L14 13.3334L9.59244 8.91027ZM9.90707 5.44161C9.90614 7.92148 7.8953 9.93899 5.42362 9.93899C2.95195 9.93899 0.941106 7.92148 0.941106 5.44161C0.941106 2.96173 2.95195 0.944227 5.42362 0.944227C7.8953 0.944227 9.90707 2.96173 9.90707 5.44161Z" fill="#141414"/>
+					</svg>
+				</span>
 			</div>
 		</div>
 	</header>
