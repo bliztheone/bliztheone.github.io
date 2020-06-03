@@ -588,105 +588,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "steps", function() { return steps; });
 function steps() {
   if ($(".Container__progress-bar__js").length > 0) {
-    var i;
+    // Функция в которой прописанна выводимая информация на определенных шагах
+    var makeUI = function makeUI() {
+      if (state === 0) {
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        $('#progress-bar').attr("value", "0");
+        setTimeout(function () {
+          // Задается тект который будет проставляться на определенной "стадии"
+          infoTitle.text("Сбор документации");
+          infoText.text("Сбор документации, предусмотренной ФЗ «О несостоятельности» (банкротстве) и необходимой для подачи заявления в суд, мы осуществим полностью за Вас.");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+      } else if (state === 1) {
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        $('#progress-bar').attr("value", "20");
+        setTimeout(function () {
+          infoTitle.text("Подготовка и подача");
+          infoText.text("Подготовим документацию, предусмотренную действующим законодательством, и подадим ее с комплектом собранной доказательственной базы в суд.");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+      } else if (state === 2) {
+        $('#progress-bar').attr("value", "40");
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        setTimeout(function () {
+          infoTitle.text("Судебная работа");
+          infoText.text("Представляем Ваши интересы в суде на всех стадиях процедуры банкротства: до признания. Вас банкротом и после, проверим все требования кредиторов, а также представим Ваши интересы на собрании кредиторов.");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+        ;
+      } else if (state === 3) {
+        $('#progress-bar').attr("value", "60");
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        setTimeout(function () {
+          infoTitle.text("Этап 4");
+          infoText.text("Ошибочно бытует мнение, что СРО обязано предоставить кандидатуру финансового управляющего. Это не так! Без личного согласия управляющего принудить его нельзя");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+      } else if (state === 4) {
+        $('#progress-bar').attr("value", "80");
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        setTimeout(function () {
+          infoTitle.text("Этап 5");
+          infoText.text("Если никто из управляющих не выразил согласия, СРО присылает в суд письменный отказ (это довольно-таки распространенная практика в настоящее время)");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+      } else if (state === 5) {
+        $('#progress-bar').attr("value", "100");
+        infoItem.animate({
+          opacity: 0
+        }, 100);
+        setTimeout(function () {
+          infoTitle.text("Вы видите реальный рост позиций и увеличение количества заявок");
+          infoText.text("Рост позиций сайта начинает приносить больше обращений от потенциальных клиентов. Нахождение сайта в ТОПе поисковой выдачи гарантирует максимальную видимость сайта и максимально увеличивает конверсию");
+          infoItem.animate({
+            opacity: 1
+          }, 100);
+        }, 100);
+      }
 
-    (function () {
-      // Функция в которой прописанна выводимая информация на определенных шагах
-      var makeUI = function makeUI() {
-        if (state === 0) {
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          $('#progress-bar').attr("value", "0");
-          setTimeout(function () {
-            // Задается тект который будет проставляться на определенной "стадии"
-            infoTitle.text("Сбор документации");
-            infoText.text("Сбор документации, предусмотренной ФЗ «О несостоятельности» (банкротстве) и необходимой для подачи заявления в суд, мы осуществим полностью за Вас.");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-        } else if (state === 1) {
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          $('#progress-bar').attr("value", "20");
-          setTimeout(function () {
-            infoTitle.text("Подготовка и подача");
-            infoText.text("Подготовим документацию, предусмотренную действующим законодательством, и подадим ее с комплектом собранной доказательственной базы в суд.");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-        } else if (state === 2) {
-          $('#progress-bar').attr("value", "40");
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          setTimeout(function () {
-            infoTitle.text("Судебная работа");
-            infoText.text("Представляем Ваши интересы в суде на всех стадиях процедуры банкротства: до признания. Вас банкротом и после, проверим все требования кредиторов, а также представим Ваши интересы на собрании кредиторов.");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-          ;
-        } else if (state === 3) {
-          $('#progress-bar').attr("value", "60");
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          setTimeout(function () {
-            infoTitle.text("Этап 4");
-            infoText.text("Ошибочно бытует мнение, что СРО обязано предоставить кандидатуру финансового управляющего. Это не так! Без личного согласия управляющего принудить его нельзя");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-        } else if (state === 4) {
-          $('#progress-bar').attr("value", "80");
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          setTimeout(function () {
-            infoTitle.text("Этап 5");
-            infoText.text("Если никто из управляющих не выразил согласия, СРО присылает в суд письменный отказ (это довольно-таки распространенная практика в настоящее время)");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-        } else if (state === 5) {
-          $('#progress-bar').attr("value", "100");
-          infoItem.animate({
-            opacity: 0
-          }, 100);
-          setTimeout(function () {
-            infoTitle.text("Вы видите реальный рост позиций и увеличение количества заявок");
-            infoText.text("Рост позиций сайта начинает приносить больше обращений от потенциальных клиентов. Нахождение сайта в ТОПе поисковой выдачи гарантирует максимальную видимость сайта и максимально увеличивает конверсию");
-            infoItem.animate({
-              opacity: 1
-            }, 100);
-          }, 100);
-        }
-
-        $(".state-active").removeClass("state-active");
-        $(".bar-item:eq(".concat(state, ")")).addClass("state-active");
-      }; // изменение переменной состояния при клике на шаги "прогресс бара"
+      $(".state-active").removeClass("state-active");
+      $(".bar-item:eq(".concat(state, ")")).addClass("state-active");
+    }; // изменение переменной состояния при клике на шаги "прогресс бара"
 
 
-      var infoItem = $(".Steps_info-items__js");
-      var infoTitle = $(".Steps_info-title__js");
-      var infoText = $(".Steps_info-text__js");
-      var state = 0;
-      var maxState = $(".cont span").length - 1;
-      $(".cont span").click(function () {
-        $(this).prevAll().addClass("blue");
-        $(this).nextAll().removeClass("blue");
-        $(this).removeClass("blue");
-        state = $(this).data("id");
-        makeUI();
-      }); // анимация для мобильной версии
-
+    // анимация для мобильной версии
+    var mobileStepAnim = function mobileStepAnim() {
       var progressBarContainer = $('.cont__js');
 
       if ($(window).width() <= '767') {
@@ -726,13 +712,28 @@ function steps() {
           });
         };
 
-        for (i = 0; i < barItem.length; i++) {
+        for (var i = 0; i < barItem.length; i++) {
           _loop();
         }
       }
 
       ;
-    })();
+    };
+
+    var infoItem = $(".Steps_info-items__js");
+    var infoTitle = $(".Steps_info-title__js");
+    var infoText = $(".Steps_info-text__js");
+    var state = 0;
+    var maxState = $(".cont span").length - 1;
+    $(".cont span").click(function () {
+      $(this).prevAll().addClass("blue");
+      $(this).nextAll().removeClass("blue");
+      $(this).removeClass("blue");
+      state = $(this).data("id");
+      makeUI();
+    });
+    mobileStepAnim();
+    $(window).resize(mobileStepAnim);
   }
 
   ;
