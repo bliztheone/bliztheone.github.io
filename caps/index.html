@@ -41,7 +41,7 @@
 					</a>
 				</div>
 				<div class="header_phone-item">
-					<a href="javascript:void(0);">Заказать звонок</a>
+					<a href="javascript:void(0);" data-modalbtn="take-call">Заказать звонок</a>
 				</div>
 			</div>
 		</div>
@@ -104,7 +104,7 @@
 				</nav>
 			</div>
 			<div>
-				<a href="javascript:viod(0);" class="header_button Button">Получить аудит сайта</a>
+				<a class="header_button Button" data-modalbtn="get-price">Получить аудит сайта</a>
 			</div>
 		</div>
 		
@@ -155,7 +155,7 @@
 					<p class="main-head_text">Наиболее значимые задачи выполняем на самом старте</p>
 				</div>
 			</div>
-			<a href="javascript:void(0);" class="Button main-head_button">Подробнее</a>
+			<a href="javascript:void(0);" class="Button main-head_button" data-modalbtn="get-price">Подробнее</a>
 		</div>
 	</div>
 </section>
@@ -647,7 +647,7 @@
 				Более 7 лет помогаем клиентам увеличить продажи и трафик, улучшить сайт и повысить его узнаваемость
 			</p>
 			<div class="increase-sale_button-group">
-				<a href="javascript:void(0);" class="Button increase-sale_green-button">Заказать звонок</a>
+				<a href="javascript:void(0);" data-modalbtn="take-call" class="Button increase-sale_green-button">Заказать звонок</a>
 				<a href="javascript:void(0);" class="increase-sale_transparent-button">Получить коммерческое
 					предложение</a>
 			</div>
@@ -1002,7 +1002,7 @@
 
 					<div class="tariffs_button-group">
 						<a href="javascript:void(0);" class="Button tariffs_info-button tariffs_info-button__js"
-							data-choosenTariff="">
+							data-choosenTariff="" data-modalbtn="get-price">
 							Оставить заявку
 						</a>
 						<a href="javascript:void(0);"
@@ -1095,10 +1095,85 @@
 		</div>
 		<div class="faq_no-answer">
 			<p class="faq_no-answer-text">Не нашли ответа на свой вопрос?</p>
-			<a href="javascript:void(0);" class="faq_no-answer-button Button">Напишите нам</a>
+			<a href="javascript:void(0);" class="faq_no-answer-button Button" data-modalbtn="take-call">Напишите нам</a>
 		</div>
 	</div>
 </section>
+
+<div class="modal modal_take-call" data-modal="take-call">
+	<div class="modal_overlay js-modalClose">
+		<div class="modal_content">
+			<div class="modal_close">
+				<svg class="js-modalClose" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M22 1.29622L20.7038 0L11 9.70378L1.29622 0L0 1.29622L9.70378 11L0 20.7038L1.29622 22L11 12.2962L20.7038 22L22 20.7038L12.2962 11L22 1.29622Z" fill="#333333"/>
+				</svg>
+			</div>
+			<h3 class="modal_title">
+				Мы перезвоним Вам
+			</h3>
+			<form class="Form modal_wrapper">
+				<div class="modal_input-group">
+					<input type="hidden" name="pd_agree" value="1">
+					<input type="text" name="fio" placeholder="Имя" class="modal_input">
+					<input type="tel" name="phone" placeholder="Телефон" class="modal_input js-PhoneMask">
+				</div>
+				<button class="Button modal_button">
+					Отправить
+				</button>
+				<p class="modal_error-text js-modal_error-text"></p>
+				<p class="modal_confidential-text">
+					Нажимая кнопку «Отправить», вы автоматически соглашаетесь с 
+					<a href="javascript:void(0);">политикой конфиденциальности</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal modal_get-price" data-modal="get-price">
+	<div class="modal_overlay js-modalClose">
+		<div class="modal_content">
+			<div class="modal_close">
+				<svg class="js-modalClose" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M22 1.29622L20.7038 0L11 9.70378L1.29622 0L0 1.29622L9.70378 11L0 20.7038L1.29622 22L11 12.2962L20.7038 22L22 20.7038L12.2962 11L22 1.29622Z" fill="#333333"/>
+				</svg>
+			</div>
+			<h3 class="modal_title modal_title__full-width">
+				Узнайте стоимость продвижения вашего сайта
+			</h3>
+			<p class="modal_wide-text">
+				Наш специалист подготовит экспресс-аудит и оценит стоимость продвижения вашего сайта. Это вас ни к чему не обязывает
+			</p>
+			<form class="Form modal_wrapper">
+				<div class="modal_input-group">
+					<input type="hidden" name="pd_agree" value="1">
+					<h5 class="modal_radio-title">Выберите удобный способ связи:</h5>
+					<div class="modal_choose-type-radio">
+						<div class="radio-group">
+							<input type="radio" name="ios-radio" value="#0000ff" id="blue" class="ios-radio" checked="" />
+							<label for="blue" class="ios-radio-label">Телефон</label>
+						</div>
+						<div class="radio-group">
+							<input type="radio" name="ios-radio" value="#00ffff" id="cyan" class="ios-radio" />
+							<label for="cyan" class="ios-radio-label">E-mail</label>
+						</div>
+					</div>
+					<input type="text" name="fio" placeholder="Имя" class="modal_input">
+					<input type="tel" name="phone" placeholder="Телефон" class="modal_input js-PhoneMask">
+					<input type="text" name="email" placeholder="Ссылка на сайт" class="modal_input">
+				</div>
+				<button class="Button modal_button">
+					Отправить
+				</button>
+				<p class="modal_error-text js-modal_error-text"></p>
+				<p class="modal_confidential-text">
+					Нажимая кнопку «Отправить», вы автоматически соглашаетесь с 
+					<a href="javascript:void(0);">политикой конфиденциальности</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
 
 	<footer class="footer">
 		<div class="container container__footer">

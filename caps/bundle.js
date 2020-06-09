@@ -312,6 +312,155 @@ function casesSlider() {
 
 /***/ }),
 
+/***/ "./src/js/components/form.js":
+/*!***********************************!*\
+  !*** ./src/js/components/form.js ***!
+  \***********************************/
+/*! exports provided: form */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "form", function() { return form; });
+function form() {
+  document.querySelectorAll('.js-PhoneMask').forEach(function (item) {
+    createMask(item);
+  });
+
+  function createMask(element) {
+    var keyCode;
+
+    var mask = function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var position = element.selectionStart;
+
+      if (position < 3 && event.keyCode != 35 && event.keyCode != 39) {
+        event.preventDefault();
+        element.selectionStart = element.value.length;
+      }
+
+      element.value = checkMask(event, element.value);
+
+      if (element.value[1] == '9') {
+        var valueArr = element.value.split('');
+        valueArr.splice(1, 0, '7');
+        var strValue = valueArr.join('');
+        strValue = strValue.replace(/[^+\d]/g, '');
+        element.value = checkMask(event, strValue);
+      } else {
+        element.value = element.value.replace(element.value[1], '7');
+      }
+    };
+
+    var checkMask = function checkMask(event, value) {
+      var matrix = "+7 (___) ___-__-__";
+      var i = 0;
+      var defaulthMask = matrix.replace(/\D/g, "");
+      var elementValue = value.replace(/\D/g, "");
+      var newElementValue = matrix.replace(/[_\d]/g, function (a) {
+        return i < elementValue.length ? elementValue.charAt(i++) || defaulthMask.charAt(i) : a;
+      });
+      i = newElementValue.indexOf("_");
+
+      if (i != -1) {
+        newElementValue = newElementValue.slice(0, i);
+      }
+
+      var reg = matrix.substr(0, value.length).replace(/_+/g, function (a) {
+        return "\\d{1," + a.length + "}";
+      }).replace(/[+()]/g, "\\$&");
+      reg = new RegExp("^" + reg + "$");
+
+      if (!reg.test(value) || value.length < 5 || keyCode > 47 && keyCode < 58) {
+        value = newElementValue;
+      }
+
+      if (event.type == "blur" && value.length < 5) {
+        value = "";
+      }
+
+      if (event.type == "input" && value.length < 5 && keyCode > 36 && keyCode < 41) {
+        event.preventDefault();
+      }
+
+      return value;
+    };
+
+    element.addEventListener("input", mask, false);
+    element.addEventListener("focus", mask, false);
+    element.addEventListener("blur", mask, false);
+    element.addEventListener("keydown", mask, false);
+    return mask;
+  } // function ShowThanksModal() {
+  //     let modal = document.querySelector('[data-modal="Modal-thanks"]');
+  //     let modalClose = document.querySelectorAll('.js-modalClose');
+  //     modal.classList.add('is-active');
+  //     setTimeout(() => {
+  //         modal.style.opacity = 1;
+  //     }, 300);
+  //     modal.addEventListener('click', (event) => {
+  //         modalClose.forEach(function(item) {
+  //             if (modal.classList.contains('is-active') && event.target == item) {
+  //                 modal.style.opacity = 0;
+  //                 setTimeout(() => {
+  //                     modal.classList.remove('is-active');
+  //                     document.body.style.overflowY = '';
+  //                     document.documentElement.style.overflowY = '';
+  //                 }, 300);
+  //             }
+  //         });
+  //     });
+  // }
+
+
+  document.querySelectorAll('.Form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameInput = this.parentElement.querySelector('input[name="fio"]').value;
+      var phoneInputValue = this.parentElement.querySelector('input[name="phone"]').value;
+      var re = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10}$/i;
+      var validPhone = re.test(phoneInputValue);
+
+      if (validPhone && nameInput) {
+        if (this.parentElement.querySelector('.js-modal_error-text')) {
+          this.parentElement.querySelector('.js-modal_error-text').classList.remove("active");
+          this.parentElement.querySelector('.js-modal_error-text').innerHTML = "";
+        }
+
+        var activeModal = document.querySelector('.modal.is-active');
+
+        if (activeModal) {
+          activeModal.classList.remove('is-active');
+        }
+
+        this.parentElement.querySelector('input[name="phone"]').value = '';
+        this.parentElement.querySelector('input[name="phone"]').classList.remove('error');
+        this.parentElement.querySelector('input[name="fio"]').value = '';
+        this.parentElement.querySelector('input[name="fio"]').classList.remove('error');
+      } else {
+        if (this.parentElement.querySelector('.js-modal_error-text')) {
+          this.parentElement.querySelector('.js-modal_error-text').classList.add("active");
+          this.parentElement.querySelector('.js-modal_error-text').innerHTML = "Пожалуйста, корректно заполните поля: имя и телефон";
+        }
+
+        if (!validPhone) {
+          this.parentElement.querySelector('input[name="phone"]').classList.add('error');
+        } else {
+          this.parentElement.querySelector('input[name="phone"]').classList.remove('error');
+        }
+
+        if (!nameInput) {
+          this.parentElement.querySelector('input[name="fio"]').classList.add('error');
+        } else {
+          this.parentElement.querySelector('input[name="fio"]').classList.remove('error');
+        }
+      }
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/initNiceSelect.js":
 /*!*********************************************!*\
   !*** ./src/js/components/initNiceSelect.js ***!
@@ -870,6 +1019,45 @@ function teamSlider() {
 
 /***/ }),
 
+/***/ "./src/js/components/modal.js":
+/*!************************************!*\
+  !*** ./src/js/components/modal.js ***!
+  \************************************/
+/*! exports provided: modal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modal", function() { return modal; });
+function modal() {
+  var modalBtn = document.querySelectorAll('[data-modalbtn]');
+  modalBtn.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault;
+      var modalName = item.dataset.modalbtn,
+          modalWindow = document.querySelector("[data-modal=\"".concat(modalName, "\"]"));
+      modalWindow.classList.add('is-active');
+      setTimeout(function () {
+        modalWindow.classList.add('is-visible');
+        document.body.style.overflowY = 'hidden';
+        document.documentElement.style.overflowY = 'hidden';
+      }, 300);
+      modalWindow.addEventListener('click', function (event) {
+        if (event.target.classList.contains('js-modalClose')) {
+          modalWindow.classList.remove('is-visible');
+          setTimeout(function () {
+            modalWindow.classList.remove('is-active');
+            document.body.style.overflowY = '';
+            document.documentElement.style.overflowY = '';
+          }, 300);
+        }
+      });
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/otherArticlesSlider.js":
 /*!**************************************************!*\
   !*** ./src/js/components/otherArticlesSlider.js ***!
@@ -1128,6 +1316,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_mainPage_tariffs_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/mainPage/tariffs.js */ "./src/js/components/mainPage/tariffs.js");
 /* harmony import */ var _components_mainPage_faq_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/mainPage/faq.js */ "./src/js/components/mainPage/faq.js");
 /* harmony import */ var _components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/burgerMenu.js */ "./src/js/components/burgerMenu.js");
+/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/modal.js */ "./src/js/components/modal.js");
+/* harmony import */ var _components_form_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/form.js */ "./src/js/components/form.js");
+
+
 
 
 
@@ -1170,6 +1362,8 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_components_mainPage_tariffs_js__WEBPACK_IMPORTED_MODULE_20__["default"])();
   Object(_components_mainPage_faq_js__WEBPACK_IMPORTED_MODULE_21__["default"])();
   Object(_components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__["default"])();
+  Object(_components_modal_js__WEBPACK_IMPORTED_MODULE_23__["modal"])();
+  Object(_components_form_js__WEBPACK_IMPORTED_MODULE_24__["form"])();
 });
 
 /***/ }),
