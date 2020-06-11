@@ -1192,6 +1192,52 @@ function phoneMask() {
 
 /***/ }),
 
+/***/ "./src/js/components/review.js":
+/*!*************************************!*\
+  !*** ./src/js/components/review.js ***!
+  \*************************************/
+/*! exports provided: review */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "review", function() { return review; });
+function review() {
+  // Обрезка + возможность полсмотреть полностью текст на сайте в мобильной версии
+  var textContent = document.querySelectorAll('.reviews_item-text__js');
+  var viewMoreTextButton = document.querySelectorAll('.show-more__js');
+
+  var _loop = function _loop() {
+    var text = textContent[i];
+    console.log(textContent[i].innerHTML);
+
+    if (textContent[i].innerHTML.length > 106) {
+      var baseText = textContent[i].innerHTML;
+      var newText = textContent[i].innerHTML.slice(0, 106) + "...";
+      textContent[i].innerHTML = newText;
+      viewMoreTextButton[i].addEventListener('click', function (e) {
+        if (!e.target.classList.contains('active')) {
+          e.target.classList.add('active');
+          text.innerHTML = baseText;
+          e.target.innerHTML = "Cкрыть";
+        } else {
+          e.target.classList.remove('active');
+          text.innerHTML = newText;
+          e.target.innerHTML = "Читать полностью";
+        }
+      });
+    } else {
+      viewMoreTextButton[i].style.display = "none";
+    }
+  };
+
+  for (var i = 0; i < textContent.length; i++) {
+    _loop();
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/components/vacanciesSlider.js":
 /*!**********************************************!*\
   !*** ./src/js/components/vacanciesSlider.js ***!
@@ -1318,6 +1364,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/burgerMenu.js */ "./src/js/components/burgerMenu.js");
 /* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/modal.js */ "./src/js/components/modal.js");
 /* harmony import */ var _components_form_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/form.js */ "./src/js/components/form.js");
+/* harmony import */ var _components_review_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/review.js */ "./src/js/components/review.js");
+
 
 
 
@@ -1364,6 +1412,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_components_burgerMenu_js__WEBPACK_IMPORTED_MODULE_22__["default"])();
   Object(_components_modal_js__WEBPACK_IMPORTED_MODULE_23__["modal"])();
   Object(_components_form_js__WEBPACK_IMPORTED_MODULE_24__["form"])();
+  Object(_components_review_js__WEBPACK_IMPORTED_MODULE_25__["review"])();
 });
 
 /***/ }),
